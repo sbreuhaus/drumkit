@@ -59,21 +59,21 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  window.addEventListener('keydown', function(e){
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  window.addEventListener('keydown', function(e){ //Event listener for hitting keys
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); //grab audio tag/sample based on key
     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-    if(!audio) return
-    audio.currentTime = 0;
-    audio.play();
-    key.classList.add('playing');
+    if(!audio) return //if no audio tag is associated with the key hit, do nothing
+    audio.currentTime = 0; //reset the start of the sample to the beginning
+    audio.play(); //play sample
+    key.classList.add('playing'); //add the css animation to the triggered sample
   })
 
-  function removeTransition(e){
-    if(e.propertyName !== 'transform') return;
-    this.classList.remove('playing');
+  function removeTransition(e){ // to remove the class
+    if(e.propertyName !== 'transform') return; //check the propertyName on the key object
+    this.classList.remove('playing'); //remove the class
   };
-  const keys = document.querySelectorAll('.key');
-  keys.forEach( k => k.addEventListener('transitionend', removeTransition))
+  const keys = document.querySelectorAll('.key'); // create an array of all the keys
+  keys.forEach( k => k.addEventListener('transitionend', removeTransition))// loop through to apply above function
 </script>
 
 
